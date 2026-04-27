@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Failure Prediction</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f6f7;
+            text-align: center;
+        }
+        .box {
+            background: white;
+            width: 320px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 6px;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        h2 {
+            color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Heart Failure Prediction</h2>
+
+    <input type="number" id="age" placeholder="Age"><br>
+    <input type="number" id="bp" placeholder="Blood Pressure"><br>
+    <input type="number" id="chol" placeholder="Cholesterol"><br>
+    <input type="number" id="hr" placeholder="Heart Rate"><br>
+    <input type="number" id="sugar" placeholder="Blood Sugar (0/1)"><br>
+    <input type="number" id="angina" placeholder="Exercise Angina (0/1)"><br>
+    <input type="number" id="thal" placeholder="Thal (1/2/3)"><br>
+
+    <button onclick="predict()">Predict</button>
+
+    <h3 id="output"></h3>
+</div>
+
+<script>
+function predict() {
+    let age = document.getElementById("age").value;
+    let bp = document.getElementById("bp").value;
+    let chol = document.getElementById("chol").value;
+    let hr = document.getElementById("hr").value;
+    let sugar = document.getElementById("sugar").value;
+    let angina = document.getElementById("angina").value;
+    let thal = document.getElementById("thal").value;
+
+    let score = 0;
+
+    if (age > 50) score++;
+    if (bp > 140) score++;
+    if (chol > 200) score++;
+    if (hr > 100) score++;
+    if (sugar == 1) score++;
+    if (angina == 1) score++;
+    if (thal == 2 || thal == 3) score++;
+
+    let result = "";
+
+    if (score >= 4) {
+        result = "⚠️ High Risk of Heart Failure";
+    } else {
+        result = "✅ Low Risk of Heart Failure";
+    }
+
+    document.getElementById("output").innerHTML = result;
+}
+</script>
+
+</body>
+</html>
